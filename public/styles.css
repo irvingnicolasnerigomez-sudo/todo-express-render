@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Reseteo y Variables Globales (Colores Modernos)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    --card-bg: #ffffff;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    
+    /* Paleta de colores para acciones y estados */
+    --primary: #4f46e5;       /* Índigo moderno */
+    --primary-hover: #4338ca;
+    --success: #10b981;       /* Esmeralda */
+    --success-hover: #059669;
+    --info: #3b82f6;          /* Azul brillante */
+    --info-hover: #2563eb;
+    --danger: #ef4444;        /* Rojo suave */
+    --danger-hover: #dc2626;
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px rgba(163, 177, 198, 0.3);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --radius: 12px;
+    --transition: all 0.25s ease;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Contenedor Principal
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 700px;
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   Botón Añadir Tarea
+   ========================================================================== */
+.add-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--primary);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    transition: var(--transition);
+}
+
+.add-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Lista de Tareas
+   ========================================================================== */
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    transition: var(--transition);
+}
+
+li:hover {
+    transform: translateX(4px);
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: var(--shadow-sm);
+}
+
+.task-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.task-info p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 3px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   Botones de Acción (UI Refinada)
+   ========================================================================== */
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.actions button {
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.start-btn {
+    background: #eff6ff;
+    color: var(--info);
+}
+
+.start-btn:hover {
+    background: var(--info);
+    color: white;
+}
+
+.finish-btn {
+    background: #ecfdf5;
+    color: var(--success);
+}
+
+.finish-btn:hover {
+    background: var(--success);
+    color: white;
+}
+
+.delete-btn {
+    background: #fef2f2;
+    color: var(--danger);
+}
+
+.delete-btn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* ==========================================================================
+   Modal (Efecto Glassmorphism / Desenfoque)
+   ========================================================================== */
+.modal {
+    display: none; /* Se cambia a 'flex' desde JS */
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px); /* Suaviza el fondo */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.modal-content input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-main);
+    transition: var(--transition);
+    outline: none;
+}
+
+.modal-content input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Botones del Modal */
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Estilos específicos para distinguir los dos botones del modal */
+.modal-buttons button:first-child {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.modal-buttons button:first-child:hover {
+    background: #e2e8f0;
+}
+
+.modal-buttons button:last-child {
+    background: var(--primary);
+    color: white;
+}
+
+.modal-buttons button:last-child:hover {
+    background: var(--primary-hover);
+}
